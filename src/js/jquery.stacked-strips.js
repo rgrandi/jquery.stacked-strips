@@ -21,7 +21,8 @@ $.fn.stacked_strips = function (options) {
 		if (options.type === undefined) {
 			options.type = 'standard';
 		}
-		if (options.active_position === undefined) {
+
+		if (options.active_position === undefined || $.type(options.active_position) !== 'number') {
 			options.active_position = 50;
 		}
 
