@@ -1,0 +1,32 @@
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
+strong {
+	font-weight: 800;
+}
+
+em {
+	font-style: italic;
+}
+
+h1 {
+	font-size: 36px;
+	line-height: 42px;
+	text-align: center;
+	padding: 20px;
+}
+
+h2 {
+	font-size: 30px;
+	line-height: 36px;
+}
+
+p {
+	margin-bottom: 16px;
+	line-height: 22px;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}

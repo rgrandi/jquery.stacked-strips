@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.stacked-strips.js"></script>
+		<script type="text/javascript" src="js/demo.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	</head>
+
+	<body>
+		<h1>Stacked Strips</h1>
+
+		<div class="container">
+
+			<section>
+				<div>
+					<h2>Lets have a look at some Stacked Strips</h2>
+				</div>
+			</section>
+
+			<section>
+				<div>
+					<p><strong>This plugin fixes elements</strong> to the screen when they reach the top of the screen, allowing the next element to scroll over the top, stacking the elements on top of one another.</p>
+				</div>
+			</section>
+
+			<section>
+				<div>
+					<p>There are options that can be passed to the plugin to adapt the way it behaves:</p>
+					<p><strong>strip_size:</strong> either 'full' which stretches the element to the screen size or a pixel value. <em>Default: 'full'.</em></p>
+					<p><strong>active_position:</strong> a number value (in percentage) of how far into the strip an 'active' class is added, this allows you to add animations when a strip comes into view. <em>Default: 50.</em></p>
+					<p><strong>after_class:</strong> true or false - whether to add a class to the previous strip when a strip becomes active. This allows you to animate the previous slide away as the new one comes into view. <em>Default: false</em></p>
+				</div>
+			</section>
+
+			<section>
+				<div>
+					<h2>Usage</h2>
+					<p><strong>Default Usage:</strong>
+					<br><code>$('element').stacked_strips();</code></p>
+					<p><strong>Passing Inline Options:</strong>
+					<br><code>$('element').stacked_strips({active_position: 60, after_class: true});</code></p>
+					<p><strong>Passing Options Through a Variable:</strong>
+					<br><code>var options = {<br>
+					active_position: 60,<br>
+					after_class: true,<br>
+					};
+					<br>$('element').stacked_strips(options);</code>
+					</p>
+				</div>
+			</section>
+
+		</div>
+
+		<footer style="position: relative; z-index: 300">
+			<p><strong>Stacked Strips</strong> is a jQuery plugin developed by <a href="http://oneltd.co.uk">One Ltd</a>.</p>
+		</footer>
+	</body>
+</html>
