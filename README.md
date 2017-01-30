@@ -3,6 +3,8 @@
 ## About:
 **Stacked Strips** is a lightweight jQuery plugin that enables you to stack HTML elements on top of one another as you scroll down the page, for a smart modern user experience.
 
+You can view the demo site for this plugin [here](http://oneltd-dev.co.uk/stacked-strips).
+
 ## Dependencies:
 - jQuery
 
