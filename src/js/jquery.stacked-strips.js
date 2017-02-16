@@ -68,8 +68,6 @@ $.fn.stacked_strips = function (options) {
 	// Detect our scrolling position
 	function detect_scrolling() {
 		scroll_top = $(window).scrollTop();
-
-		console.log(scroll_top);
 	}
 
 	function set_strip_classes(element, this_offset, index) {
@@ -119,8 +117,6 @@ $.fn.stacked_strips = function (options) {
 
 		if (scroll_top >= this_offset - (window_height - active_offset)) {
 
-			console.log(scroll_top);
-
 			// If we want a class to go on the slide after the next one goes active, we handle
 			// it here.
 			if (options.after_class === true) {
@@ -157,8 +153,6 @@ $.fn.stacked_strips = function (options) {
 		var $this = $(this),
 			index = e,
 			this_offset = $this.offset().top;
-
-		console.log(this_offset);
 
 		set_strip_classes($this, this_offset, index);
 
