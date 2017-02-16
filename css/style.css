@@ -74,7 +74,7 @@ section {
   background-repeat: no-repeat;
   background-position: center; }
   section div {
-    position: absolute;
+    position: relative;
     top: 80%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);

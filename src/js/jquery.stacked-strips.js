@@ -7,7 +7,7 @@ $.fn.stacked_strips = function (options) {
 		scroll_top = 0;
 
 
-	// Return error message is this is less than 2 strips.
+	// Return appropriate error message is this is less than 2 strips, or if no strips are found.
 	if (strips_length === 1) {
 		console.error('stacked_strips requires more than 1 item to work. Exiting.');
 		return false;
@@ -33,13 +33,20 @@ $.fn.stacked_strips = function (options) {
 		if (options.after_class === undefined) {
 			options.after_class = false;
 		}
+
+		if (options.fixed === undefined) {
+			options.fixed = true;
+		}
 	}
 
 	// Build function to setup the strips
 	function setup_strips() {
+		window_height = $(window).height();
 
 		if (options.strip_size === 'full') {
 			strip_height = window_height;
+		} else if (options.strip_size === 'auto') {
+			strip_height = '';
 		} else {
 			strip_height = options.strip_size;
 		}
@@ -48,7 +55,9 @@ $.fn.stacked_strips = function (options) {
 		$.each(strips, function(key) {
 			
 			// If an element is too big to fit, we don't fix its size.
-			if ($(this).height() > strip_height) {
+			if (options.strip_size === 'auto') {
+				$(this).css({'height': strip_height, 'z-index' : key*10});
+			} else if ($(this).height() > strip_height) {
 				$(this).css('z-index', key*10);
 			} else {
 				$(this).css({'height': strip_height, 'z-index' : key*10});
@@ -59,6 +68,8 @@ $.fn.stacked_strips = function (options) {
 	// Detect our scrolling position
 	function detect_scrolling() {
 		scroll_top = $(window).scrollTop();
+
+		console.log(scroll_top);
 	}
 
 	function set_strip_classes(element, this_offset, index) {
@@ -68,7 +79,7 @@ $.fn.stacked_strips = function (options) {
 			active_offset = (el_height/100) * options.active_position;
 
 		// Set fixed class on the strip when it reaches the top.
-		if (scroll_top >= this_offset) {
+		if (scroll_top >= this_offset && options.fixed === true) {
 
 
 			// We don't want the last strip to get fixed.
@@ -77,13 +88,13 @@ $.fn.stacked_strips = function (options) {
 				// Only fix elements that are standard sized.
 				if (el_height === strip_height) {
 
-				// Add a fake strip to preserve the layout.
-					if (!element.prev().hasClass('fake-strip')) {
-						element.before($fake_strip);
-					}
-				
-					element.addClass('fixed');
-					element.removeClass('unfixed');
+					// Add a fake strip to preserve the layout.
+						if (!element.prev().hasClass('fake-strip')) {
+							element.before($fake_strip);
+						}
+					
+						element.addClass('fixed');
+						element.removeClass('unfixed');
 				}
 			}
 
@@ -106,7 +117,9 @@ $.fn.stacked_strips = function (options) {
 		// is 1000px, we want to get 60% of that (600) and take that away from the strip height
 		// (which gives us 400). We then subtract the 400 from the offset to the top.
 
-		if (scroll_top >= this_offset - (strip_height - active_offset)) {
+		if (scroll_top >= this_offset - (window_height - active_offset)) {
+
+			console.log(scroll_top);
 
 			// If we want a class to go on the slide after the next one goes active, we handle
 			// it here.
@@ -134,6 +147,8 @@ $.fn.stacked_strips = function (options) {
 	}
 
 	$(window).on('scroll', detect_scrolling);
+	$(window).on('resize', setup_strips);
+
 
 	sanitize_options();
 	setup_strips();
@@ -142,6 +157,8 @@ $.fn.stacked_strips = function (options) {
 		var $this = $(this),
 			index = e,
 			this_offset = $this.offset().top;
+
+		console.log(this_offset);
 
 		set_strip_classes($this, this_offset, index);
 
