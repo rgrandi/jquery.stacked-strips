@@ -115,7 +115,15 @@ $.fn.stacked_strips = function (options) {
 		// is 1000px, we want to get 60% of that (600) and take that away from the strip height
 		// (which gives us 400). We then subtract the 400 from the offset to the top.
 
-		if (scroll_top >= this_offset - (window_height - active_offset)) {
+		var strip_height_real;
+
+		if (window_height > strip_height) {
+			strip_height_real = window_height;
+		} else {
+			strip_height_real = strip_height;
+		}
+
+		if (scroll_top >= this_offset - (strip_height_real - active_offset)) {
 
 			// If we want a class to go on the slide after the next one goes active, we handle
 			// it here.
